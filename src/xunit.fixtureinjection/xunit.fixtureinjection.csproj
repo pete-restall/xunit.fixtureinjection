@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>Xunit.FixtureInjection</RootNamespace>
+    <PackageTags>xunit fixture injection ioc di dependency inversion control</PackageTags>
+    <Authors>Pete Restall &lt;pete@restall.net&gt;</Authors>
+    <Copyright>(C) 2018 Pete Restall &lt;pete@restall.net&gt;</Copyright>
+    <PackageLicenseUrl>https://github.com/pete-restall/xunit.fixtureinjection/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/pete-restall/xunit.fixtureinjection/</PackageProjectUrl>
+    <Description>Collection and Class Fixture Dependency Injection for xUnit.</Description>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>0.1.0</Version>
+    <PackageReleaseNotes />
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningsAsErrors />
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningsAsErrors />
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="xunit" Version="2.3.1" />
+  </ItemGroup>
+
+</Project>
