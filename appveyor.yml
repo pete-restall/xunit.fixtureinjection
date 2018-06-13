@@ -12,10 +12,10 @@ platform: Any CPU
 configuration: Release
 
 install:
-  - cmd: dotnet restore src\xunit.fixtureintegration.sln
+  - cmd: dotnet restore src\xunit.fixtureinjection.sln
 
 build:
-  project: xunit.fixtureintegration.sln
+  project: xunit.fixtureinjection.sln
   verbosity: normal
   publish_nuget: true
 
