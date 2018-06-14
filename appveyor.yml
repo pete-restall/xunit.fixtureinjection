@@ -9,7 +9,7 @@ dotnet_csproj:
   package_version: "0.1.0-pre{build}"
   assembly_version: "{version}"
   file_version: "{version}"
-  assembly_informational_version: "0.1.0"
+  informational_version: "0.1.0"
 
 platform: Any CPU
 
