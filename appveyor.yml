@@ -1,10 +1,14 @@
 version: 0.1.0.{build}
 
-assembly_info:
+image: Visual Studio 2017
+
+dotnet_csproj:
   patch: true
-  file: AssemblyInfo.cs
-  assembly_version: "0.1.0"
-  assembly_file_version: "{version}"
+  file: '**\*.csproj'
+  version: "0.1.0"
+  package_version: "0.1.0-pre{build}"
+  assembly_version: "{version}"
+  file_version: "{version}"
   assembly_informational_version: "0.1.0"
 
 platform: Any CPU
@@ -17,7 +21,7 @@ install:
 build:
   project: xunit.fixtureinjection.sln
   verbosity: normal
-  publish_nuget: true
+  publish_nuget: false
 
 deploy:
   provider: Environment
