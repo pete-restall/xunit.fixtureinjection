@@ -21,7 +21,7 @@ install:
 build:
   project: src\xunit.fixtureinjection.sln
   verbosity: normal
-  publish_nuget: false
+  publish_nuget: true
 
 deploy:
   provider: Environment
