@@ -11,7 +11,7 @@
     <Description>Collection and Class Fixture Dependency Injection for xUnit.</Description>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Version>0.1.0</Version>
-    <PackageReleaseNotes />
+    <PackageReleaseNotes>Initial release.</PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

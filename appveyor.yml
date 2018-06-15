@@ -23,6 +23,9 @@ build:
   verbosity: normal
   publish_nuget: true
 
+artifacts:
+  - path: '**\xunit.fixtureinjection.nupkg'
+
 deploy:
   provider: Environment
   name: NuGet Staging
