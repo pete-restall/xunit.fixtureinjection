@@ -19,7 +19,7 @@ install:
   - cmd: dotnet restore src\xunit.fixtureinjection.sln
 
 build:
-  project: xunit.fixtureinjection.sln
+  project: src\xunit.fixtureinjection.sln
   verbosity: normal
   publish_nuget: false
 
