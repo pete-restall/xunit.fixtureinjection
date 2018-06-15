@@ -12,6 +12,7 @@
     <PackageTags>xunit fixture injection ioc di dependency inversion control</PackageTags>
     <Description>Tests for the xunit.fixtureinjection project.</Description>
     <Version>0.1.0</Version>
+    <IsPackable>false</IsPackable>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

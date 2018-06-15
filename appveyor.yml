@@ -21,7 +21,6 @@ install:
 build:
   project: src\xunit.fixtureinjection.sln
   verbosity: normal
-  publish_nuget: true
 
 artifacts:
   - path: '**\xunit.fixtureinjection*.nupkg'
