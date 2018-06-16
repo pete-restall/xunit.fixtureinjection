@@ -1,15 +1,15 @@
-version: 0.1.0.{build}
+version: 1.0.0.{build}
 
 image: Visual Studio 2017
 
 dotnet_csproj:
   patch: true
   file: '**\*.csproj'
-  version: "0.1.0"
-  package_version: "0.1.0-pre{build}"
+  version: "1.0.0"
+  package_version: "1.0.0"
   assembly_version: "{version}"
   file_version: "{version}"
-  informational_version: "0.1.0"
+  informational_version: "1.0.0"
 
 platform: Any CPU
 
@@ -27,4 +27,4 @@ artifacts:
 
 deploy:
   provider: Environment
-  name: NuGet Staging
+  name: NuGet Live
