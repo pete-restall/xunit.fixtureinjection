@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFrameworks>netstandard2.0;net461</TargetFrameworks>
     <RootNamespace>Xunit.FixtureInjection</RootNamespace>
     <PackageTags>xunit fixture injection ioc di dependency inversion control</PackageTags>
     <Authors>Pete Restall &lt;pete@restall.net&gt;</Authors>
