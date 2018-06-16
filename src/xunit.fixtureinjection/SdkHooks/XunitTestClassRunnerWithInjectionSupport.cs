@@ -6,7 +6,7 @@ using System.Threading;
 using Xunit.Abstractions;
 using Xunit.Sdk;
 
-namespace Xunit.FixtureInjection
+namespace Xunit.FixtureInjection.SdkHooks
 {
 	public class XunitTestClassRunnerWithInjectionSupport : XunitTestClassRunner
 	{

@@ -2,7 +2,7 @@ using System;
 using System.Linq.Expressions;
 using System.Reflection;
 
-namespace Xunit.FixtureInjection
+namespace Xunit.FixtureInjection.SdkHooks
 {
 	internal static class InfoOf
 	{
