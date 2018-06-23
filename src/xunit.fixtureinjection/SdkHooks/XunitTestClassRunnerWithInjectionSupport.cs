@@ -32,17 +32,41 @@ namespace Xunit.FixtureInjection.SdkHooks
 			var fixtureFactory = this.collectionFixtureMappings.Select(x => x.Value).OfType<ICreateClassFixtures>().SingleOrDefault();
 			if (fixtureFactory != null)
 			{
-				var factoryMethod = GetFactoryMethodFor(fixtureType);
+				var factoryMethod = GetClassFixtureFactoryMethodFor(fixtureType);
 				this.Aggregator.Run(() => this.ClassFixtureMappings[fixtureType] = factoryMethod.Invoke(fixtureFactory, new object[0]));
 			}
 			else
 				base.CreateClassFixture(fixtureType);
 		}
 
-		private static MethodInfo GetFactoryMethodFor(Type fixtureType)
+		private static MethodInfo GetClassFixtureFactoryMethodFor(Type fixtureType)
 		{
 			return InfoOf
 				.Method<ICreateClassFixtures>(x => x.CreateClassFixture<object>())
+				.GetGenericMethodDefinition()
+				.MakeGenericMethod(fixtureType);
+		}
+
+		protected override bool TryGetConstructorArgument(ConstructorInfo constructor, int index, ParameterInfo parameter, out object argumentValue)
+		{
+			if (base.TryGetConstructorArgument(constructor, index, parameter, out argumentValue))
+				return true;
+
+			var fixtureFactory = this.collectionFixtureMappings.Select(x => x.Value).OfType<ICreateTestCaseFixtures>().SingleOrDefault();
+			if (fixtureFactory != null)
+			{
+				var factoryMethod = GetTestCaseFixtureFactoryMethodFor(parameter.ParameterType);
+				argumentValue = factoryMethod.Invoke(fixtureFactory, new object[0]);
+				return true;
+			}
+
+			return false;
+		}
+
+		private static MethodInfo GetTestCaseFixtureFactoryMethodFor(Type fixtureType)
+		{
+			return InfoOf
+				.Method<ICreateTestCaseFixtures>(x => x.CreateTestCaseFixture<object>())
 				.GetGenericMethodDefinition()
 				.MakeGenericMethod(fixtureType);
 		}

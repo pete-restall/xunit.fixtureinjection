@@ -2,9 +2,9 @@
 
 namespace Xunit.FixtureInjection.Tests
 {
-	public class CollectionFixtureWithInjectionSupport : ICreateClassFixtures
+	public class CollectionFixtureWithClassFixtureInjectionSupport : ICreateClassFixtures
 	{
-		public CollectionFixtureWithInjectionSupport()
+		public CollectionFixtureWithClassFixtureInjectionSupport()
 		{
 			this.Token = Guid.NewGuid();
 		}

@@ -1,13 +1,13 @@
 ﻿namespace Xunit.FixtureInjection.Tests
 {
-	[Collection(CollectionFixtureWithInjectionSupportDefinition.Name)]
+	[Collection(CollectionFixtureWithClassFixtureInjectionSupportDefinition.Name)]
 	public class ClassFixtureInCollectionWithInjectionSupportTest : IClassFixture<ClassFixtureRequiringInjection>
 	{
-		private readonly CollectionFixtureWithInjectionSupport collectionFixture;
+		private readonly CollectionFixtureWithClassFixtureInjectionSupport collectionFixture;
 		private readonly ClassFixtureRequiringInjection classFixture;
 
 		public ClassFixtureInCollectionWithInjectionSupportTest(
-			CollectionFixtureWithInjectionSupport collectionFixture,
+			CollectionFixtureWithClassFixtureInjectionSupport collectionFixture,
 			ClassFixtureRequiringInjection classFixture)
 		{
 			this.collectionFixture = collectionFixture;

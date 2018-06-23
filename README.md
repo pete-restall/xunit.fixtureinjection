@@ -2,7 +2,8 @@
 [xunit.fixtureinjection](https://github.com/pete-restall/xunit.fixtureinjection)
 is a library to support Integration Testing with [xUnit](https://github.com/xunit/xunit).
 It does this by providing a set of shims that facilitate Dependency Injection
-for [Collection and Class Fixtures](https://xunit.github.io/docs/shared-context).
+for
+[Collection, Class and Test Case Fixtures](https://xunit.github.io/docs/shared-context).
 
 This framework is DI Container agnostic because it simply provides a set of Factory
 Method hooks into the [xUnit](https://github.com/xunit/xunit) pipeline.  For example,
@@ -46,20 +47,29 @@ Create your Collection Definition:
 Create your Collection Fixture (with empty constructor or taking an
 [IMessageSink](https://github.com/xunit/abstractions.xunit/blob/master/src/xunit.abstractions/Messages/BaseInterfaces/IMessageSink.cs),
 as per the usual [xUnit](https://github.com/xunit/xunit) rules) and mark it with
-[ICreateClassFixtures](https://github.com/pete-restall/xunit.fixtureinjection/blob/master/src/xunit.fixtureinjection/ICreateClassFixtures.cs).
-Be sure to use an explicit interface definition to 'hide' this Service Locator like horridness:
+[ICreateClassFixtures](https://github.com/pete-restall/xunit.fixtureinjection/blob/master/src/xunit.fixtureinjection/ICreateClassFixtures.cs)
+if you wish to use Class Fixtures, and / or mark it with
+[ICreateTestCaseFixtures](https://github.com/pete-restall/xunit.fixtureinjection/blob/master/src/xunit.fixtureinjection/ICreateTestCaseFixtures.cs)
+if you wish to use Test Case Fixtures.  Be sure to use an explicit interface
+definitions to 'hide' the Service Locator like horridness:
 
 ```C#
-	public class CollectionFixtureWithInjectionSupport : ICreateClassFixtures
+	public class CollectionFixtureWithInjectionSupport : ICreateClassFixtures, ICreateTestCaseFixtures
 	{
 		TFixture ICreateClassFixtures.CreateClassFixture<TFixture>()
+		{
+			return ...;
+		}
+
+		TFixture ICreateTestCaseFixtures.CreateTestCaseFixture<TFixture>()
 		{
 			return ...;
 		}
 	}
 ```
 
-Create your Class Fixture with any dependencies it requires:
+Create your Class Fixture or Test Case Fixture with any dependencies it
+requires:
 
 ```C#
 	public class ClassFixtureRequiringInjection
@@ -71,15 +81,28 @@ Create your Class Fixture with any dependencies it requires:
 
 		...
 	}
+
+	public class TestCaseFixtureRequiringInjection
+	{
+		public TestCaseFixtureRequiringInjection(Foo foo, Bar bar, ...)
+		{
+			...
+		}
+
+		...
+	}
 ```
 
-Use the Class Fixture in any tests that are part of the Test Collection:
+Use the Class Fixture or Test Case Fixture in any tests that are part of the
+Test Collection:
 
 ```C#
 	[Collection("MyCollection")]
 	public class ClassFixtureInCollectionWithInjectionSupportTest : IClassFixture<ClassFixtureRequiringInjection>
 	{
-		public ClassFixtureInCollectionWithInjectionSupportTest(ClassFixtureRequiringInjection classFixture)
+		public ClassFixtureInCollectionWithInjectionSupportTest(
+			ClassFixtureRequiringInjection classFixture,
+			TestCaseFixtureRequiringInjection testCaseFixture)
 		{
 			...
 		}
@@ -109,7 +132,7 @@ argument.
 	}
 ```
 
-The Collection Fixture is then free to request dependencies
+The Collection Fixture is then free to request dependencies:
 
 ```C#
 	public class CollectionFixtureRequiringInjection
@@ -123,6 +146,8 @@ The Collection Fixture is then free to request dependencies
 
 The Collection Fixture can also implement
 [ICreateClassFixtures](https://github.com/pete-restall/xunit.fixtureinjection/blob/master/src/xunit.fixtureinjection/ICreateClassFixtures.cs)
+and
+[ICreateTestCaseFixtures](https://github.com/pete-restall/xunit.fixtureinjection/blob/master/src/xunit.fixtureinjection/ICreateTestCaseFixtures.cs)
 if desired.
 
 Simples.
